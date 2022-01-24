@@ -9,13 +9,12 @@ class InitialPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SchedulerBinding.instance!.addPostFrameCallback((_) {
-      Loader.appLoader.showLoader();
+      Loader.appLoader.showTabbar();
       Navigator.of(context).pushNamed(RouteConstant.home);
     });
     return BlocListener<NavigatorBloc, HomeNavigatorState>(
       listener: (context, state) {
         if (state is NavigateToHome) {
-          debugPrint("HomeContent listener NavigateToHome");
           Navigator.of(context).pushNamed(RouteConstant.home);
         } else if (state is NavigateToLibrary) {
           Navigator.of(context).pushNamed(RouteConstant.library);
@@ -23,6 +22,10 @@ class InitialPage extends StatelessWidget {
           Navigator.of(context).pushNamed(RouteConstant.premium);
         } else if (state is NavigateToSearch) {
           Navigator.of(context).pushNamed(RouteConstant.search);
+        } else if (state is NavigateToQuerying) {
+          Navigator.of(context).pushNamed(RouteConstant.query);
+        } else if (state is NavigateToPlaylist) {
+          // Navigator.of(context).pushNamed(RouteConstant.playlist);
         }
       },
       child: Container(

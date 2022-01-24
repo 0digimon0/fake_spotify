@@ -19,6 +19,10 @@ class NavigatorBloc extends Bloc<NavigatorEvent, HomeNavigatorState> {
       yield NavigateToSearch();
     } else if (event is GoPremiumEvent) {
       yield NavigateToPremium();
+    } else if (event is GoQueryingEvent) {
+      yield NavigateToQuerying();
+    } else if (event is GoPlaylistEvent) {
+      yield NavigateToPlaylist();
     }
   }
 }

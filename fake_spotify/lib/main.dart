@@ -1,6 +1,7 @@
 import 'package:fake_spotify/config/app_config.dart';
 import 'package:fake_spotify/di/app_injector.dart';
 import 'package:fake_spotify/presentation/blocs/app/app_bloc.dart';
+import 'package:fake_spotify/presentation/blocs/app/audio_bloc.dart';
 import 'package:fake_spotify/presentation/blocs/home/navigator_bloc.dart';
 import 'package:fake_spotify/presentation/widget/overlay_view.dart';
 import 'package:flutter/material.dart';
@@ -24,23 +25,42 @@ class MyApp extends StatelessWidget {
         BlocProvider<AppBloc>(
             create: (context) => AppInjector.injector<AppBloc>()),
         BlocProvider<NavigatorBloc>(
-            create: (context) => AppInjector.injector<NavigatorBloc>())
+            create: (context) => AppInjector.injector<NavigatorBloc>()),
+        BlocProvider<AudioBloc>(
+            create: (context) => AppInjector.injector<AudioBloc>())
       ],
-      child: Stack(
-        alignment: Alignment.bottomCenter,
-        children: [
-          MaterialApp(
-            title: 'Flutter Demo',
-            debugShowCheckedModeBanner: false,
-            onGenerateRoute: AppRoute.getRoute,
-            initialRoute: RouteConstant.initial,
-            builder: EasyLoading.init(),
-            theme: ThemeData(
-              primarySwatch: Colors.blue,
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        builder: EasyLoading.init(),
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        title: 'Flutter Demo',
+        home: Stack(
+          alignment: Alignment.bottomCenter,
+          children: [
+            MaterialApp(
+              onGenerateRoute: AppRoute.getRoute,
+              initialRoute: RouteConstant.initial,
+              builder: EasyLoading.init(),
+              theme: ThemeData(
+                primarySwatch: Colors.blue,
+              ),
             ),
-          ),
-          OverlayView(key: GlobalKey(debugLabel: "overlay")),
-        ],
+            Positioned(
+              child: OverlayView(key: GlobalKey(debugLabel: "overlay")),
+              bottom: 10,
+              left: 0,
+              right: 0,
+            ),
+            // Positioned(
+            //   child: AudioControlView(),
+            //   bottom: Dimens.bottomBarHeight + 10,
+            //   left: 0,
+            //   right: 0,
+            // )
+          ],
+        ),
       ),
     );
   }

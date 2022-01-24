@@ -100,4 +100,6 @@ class Dimens {
   static const widthIconStatusDevice = 33.0;
   static const deleteImageButtonTop = -10.0;
   static const deleteImageButtonRight = 5.0;
+
+  static const bottomBarHeight = 70.0;
 }

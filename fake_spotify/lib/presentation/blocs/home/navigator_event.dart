@@ -14,3 +14,7 @@ class GoSearchEvent extends NavigatorEvent {}
 class GoLibraryEvent extends NavigatorEvent {}
 
 class GoPremiumEvent extends NavigatorEvent {}
+
+class GoQueryingEvent extends NavigatorEvent {}
+
+class GoPlaylistEvent extends NavigatorEvent {}

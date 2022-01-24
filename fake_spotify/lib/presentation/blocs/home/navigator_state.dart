@@ -14,3 +14,7 @@ class NavigateToSearch extends HomeNavigatorState {}
 class NavigateToLibrary extends HomeNavigatorState {}
 
 class NavigateToPremium extends HomeNavigatorState {}
+
+class NavigateToQuerying extends HomeNavigatorState {}
+
+class NavigateToPlaylist extends HomeNavigatorState {}

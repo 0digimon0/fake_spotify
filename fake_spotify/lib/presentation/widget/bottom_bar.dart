@@ -1,13 +1,12 @@
+import 'package:fake_spotify/constant/dimen_constants.dart';
+import 'package:fake_spotify/di/app_injector.dart';
 import 'package:fake_spotify/presentation/blocs/home/navigator_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'bottom_bar_item.dart';
 
 class NavigationBar extends StatefulWidget {
-  BuildContext parentContext;
-
-  NavigationBar(this.parentContext);
+  NavigationBar();
 
   @override
   State<StatefulWidget> createState() => NavigationBarState();
@@ -28,16 +27,16 @@ class NavigationBarState extends State<NavigationBar> {
 
     switch (i) {
       case 1:
-        widget.parentContext.read<NavigatorBloc>().add(GoHomeEvent());
+        AppInjector.injector<NavigatorBloc>().add(GoHomeEvent());
         break;
       case 2:
-        widget.parentContext.read<NavigatorBloc>().add(GoSearchEvent());
+        AppInjector.injector<NavigatorBloc>().add(GoSearchEvent());
         break;
       case 3:
-        widget.parentContext.read<NavigatorBloc>().add(GoLibraryEvent());
+        AppInjector.injector<NavigatorBloc>().add(GoLibraryEvent());
         break;
       case 4:
-        widget.parentContext.read<NavigatorBloc>().add(GoPremiumEvent());
+        AppInjector.injector<NavigatorBloc>().add(GoPremiumEvent());
         break;
       default:
     }
@@ -47,8 +46,9 @@ class NavigationBarState extends State<NavigationBar> {
   Widget build(BuildContext context) {
     debugPrint("NavigationBarState build: $selectedIdex");
     return Container(
+      color: Colors.black87,
       width: double.infinity,
-      height: 60,
+      height: Dimens.bottomBarHeight,
       child: Directionality(
           textDirection: TextDirection.ltr,
           child: Row(
@@ -57,6 +57,7 @@ class NavigationBarState extends State<NavigationBar> {
                 child: BottomBarItem(
                   key: Key("Home"),
                   name: "Home",
+                  icon: Icon(Icons.home),
                   id: 1,
                   callback: menuItemClick,
                   selected: selectedIdex == 1,
@@ -67,6 +68,7 @@ class NavigationBarState extends State<NavigationBar> {
                 child: BottomBarItem(
                   key: Key("Search"),
                   name: "Search",
+                  icon: Icon(Icons.search),
                   id: 2,
                   callback: menuItemClick,
                   selected: selectedIdex == 2,
@@ -77,6 +79,7 @@ class NavigationBarState extends State<NavigationBar> {
                 child: BottomBarItem(
                   key: Key("Library"),
                   name: "Library",
+                  icon: Icon(Icons.my_library_books),
                   id: 3,
                   callback: menuItemClick,
                   selected: selectedIdex == 3,
@@ -87,6 +90,7 @@ class NavigationBarState extends State<NavigationBar> {
                 child: BottomBarItem(
                   key: Key("Premium"),
                   name: "Premium",
+                  icon: Icon(Icons.access_alarms),
                   id: 4,
                   callback: menuItemClick,
                   selected: selectedIdex == 4,

@@ -1,3 +1,4 @@
+import 'package:fake_spotify/constant/dimen_constants.dart';
 import 'package:flutter/material.dart';
 
 class BottomBarItem extends StatelessWidget {
@@ -6,6 +7,7 @@ class BottomBarItem extends StatelessWidget {
   BottomBarItem(
       {Key? key,
       required this.name,
+      required this.icon,
       required this.id,
       this.selected = false,
       required this.callback})
@@ -13,6 +15,7 @@ class BottomBarItem extends StatelessWidget {
 
   final String name;
   final int id;
+  final Icon icon;
   bool selected;
 
   @override
@@ -22,14 +25,26 @@ class BottomBarItem extends StatelessWidget {
         callback(id);
       },
       child: Container(
-        height: 50,
+        padding: EdgeInsets.only(top: 10),
+        height: Dimens.bottomBarHeight,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            Container(
+              child: Icon(
+                icon.icon,
+                color: selected ? Colors.white : Colors.white24,
+              ),
+            ),
+            SizedBox(
+              height: 5,
+            ),
             Text(
               name,
               textDirection: TextDirection.ltr,
-              style: TextStyle(color: selected ? Colors.white : Colors.white24),
+              style: TextStyle(
+                  color: selected ? Colors.white : Colors.white24,
+                  fontSize: 12),
             )
           ],
         ),
