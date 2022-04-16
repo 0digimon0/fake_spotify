@@ -6,23 +6,13 @@ part 'navigator_event.dart';
 part 'navigator_state.dart';
 
 class NavigatorBloc extends Bloc<NavigatorEvent, HomeNavigatorState> {
-  NavigatorBloc() : super(InitialState());
-
-  @override
-  Stream<HomeNavigatorState> mapEventToState(NavigatorEvent event) async* {
-    debugPrint("NavigatorBloc mapEventToState ");
-    if (event is GoHomeEvent) {
-      yield NavigateToHome();
-    } else if (event is GoLibraryEvent) {
-      yield NavigateToLibrary();
-    } else if (event is GoSearchEvent) {
-      yield NavigateToSearch();
-    } else if (event is GoPremiumEvent) {
-      yield NavigateToPremium();
-    } else if (event is GoQueryingEvent) {
-      yield NavigateToQuerying();
-    } else if (event is GoPlaylistEvent) {
-      yield NavigateToPlaylist();
-    }
+  NavigatorBloc() : super(InitialState()) {
+    debugPrint("NavigatorBloc on event");
+    on<GoHomeEvent>((event, emit) => emit(NavigateToHome()));
+    on<GoLibraryEvent>((event, emit) => emit(NavigateToLibrary()));
+    on<GoSearchEvent>((event, emit) => emit(NavigateToSearch()));
+    on<GoPremiumEvent>((event, emit) => emit(NavigateToPremium()));
+    on<GoQueryingEvent>((event, emit) => emit(NavigateToQuerying()));
+    on<GoPlaylistEvent>((event, emit) => emit(NavigateToPlaylist()));
   }
 }

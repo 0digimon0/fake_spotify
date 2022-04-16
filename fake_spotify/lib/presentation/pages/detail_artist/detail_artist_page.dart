@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class DetailArtistPage extends StatelessWidget {
-  final double imageHeight = 250;
+  final double imageHeight = 200;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +36,7 @@ class DetailArtistPage extends StatelessWidget {
               (_, int index) {
                 if (index == 0) {
                   return Container(
-                    height: 50,
+                    height: 150,
                     color: Colors.black,
                   );
                 }

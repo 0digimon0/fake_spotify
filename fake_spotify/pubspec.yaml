@@ -27,7 +27,7 @@ dependencies:
 #------------------
   #Cores
   get_it: any
-  flutter_bloc: any
+  flutter_bloc: ^8.0.0
   equatable: any
   logger: any
    # flutter pub run build_runner build --delete-conflicting-outputs

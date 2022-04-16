@@ -14,7 +14,7 @@ class OverlayView extends StatelessWidget {
         valueListenable: Loader.appLoader.tabbarShowingNotifier,
         builder: (context1, value, child) {
           if (value) {
-            return NavigationBar();
+            return NavigationAppBar();
           } else {
             return Container();
           }

@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 
 import 'bottom_bar_item.dart';
 
-class NavigationBar extends StatefulWidget {
-  NavigationBar();
+class NavigationAppBar extends StatefulWidget {
+  NavigationAppBar();
 
   @override
-  State<StatefulWidget> createState() => NavigationBarState();
+  State<StatefulWidget> createState() => NavigationAppBarState();
 }
 
-class NavigationBarState extends State<NavigationBar> {
+class NavigationAppBarState extends State<NavigationAppBar> {
   int selectedIdex = 1;
 
   menuItemClick(int i) {

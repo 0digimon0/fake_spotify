@@ -3,6 +3,7 @@ import 'package:fake_spotify/di/app_injector.dart';
 import 'package:fake_spotify/presentation/blocs/app/app_bloc.dart';
 import 'package:fake_spotify/presentation/blocs/app/audio_bloc.dart';
 import 'package:fake_spotify/presentation/blocs/home/navigator_bloc.dart';
+import 'package:fake_spotify/presentation/blocs/home/navigator_cubit.dart';
 import 'package:fake_spotify/presentation/widget/overlay_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
