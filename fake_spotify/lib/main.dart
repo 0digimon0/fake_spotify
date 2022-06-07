@@ -13,7 +13,7 @@ import 'config/app_route.dart';
 import 'constant/route_constants.dart';
 
 void main() async {
-  // WidgetsFlutterBinding.ensureInitialized();  ????
+  WidgetsFlutterBinding.ensureInitialized();
   await AppConfig().configApp();
   runApp(MyApp());
 }
@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
             ),
             Positioned(
               child: OverlayView(key: GlobalKey(debugLabel: "overlay")),
-              bottom: 10,
+              bottom: 0,
               left: 0,
               right: 0,
             ),
