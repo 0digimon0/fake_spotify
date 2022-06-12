@@ -10,7 +10,7 @@ class InitialPage extends StatelessWidget {
   Widget build(BuildContext context) {
     SchedulerBinding.instance!.addPostFrameCallback((_) {
       Loader.appLoader.showTabbar();
-      Navigator.of(context).pushNamed(RouteConstant.home);
+      Navigator.of(context).pushReplacementNamed(RouteConstant.home);
     });
     return BlocListener<NavigatorBloc, HomeNavigatorState>(
       listener: (context, state) {

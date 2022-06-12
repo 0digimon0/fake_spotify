@@ -46,7 +46,13 @@ class NavigationAppBarState extends State<NavigationAppBar> {
   Widget build(BuildContext context) {
     debugPrint("NavigationBarState build: $selectedIdex");
     return Container(
-      color: Colors.black87,
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
+              colors: [Colors.black.withAlpha(144), Colors.black],
+              begin: const FractionalOffset(0.0, 0.0),
+              end: const FractionalOffset(0.0, 1.0),
+              stops: [0.0, 1.0],
+              tileMode: TileMode.clamp)),
       width: double.infinity,
       height: Dimens.bottomBarHeight,
       child: Directionality(

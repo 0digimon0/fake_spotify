@@ -41,6 +41,7 @@ class MyApp extends StatelessWidget {
           alignment: Alignment.bottomCenter,
           children: [
             MaterialApp(
+              debugShowCheckedModeBanner: false,
               onGenerateRoute: AppRoute.getRoute,
               initialRoute: RouteConstant.initial,
               builder: EasyLoading.init(),
