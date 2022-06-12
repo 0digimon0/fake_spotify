@@ -12,7 +12,7 @@ class LibraryPageState extends State<LibraryPage> {
   @override
   void initState() {
     super.initState();
-    getAllPhotos();
+    getAllAudios();
   }
 
   @override
@@ -28,32 +28,14 @@ class LibraryPageState extends State<LibraryPage> {
     );
   }
 
-  Future<void> _getDocuments() async {
-    List<dynamic> documentList = [""];
+  void getAllAudios() async {
     try {
-      documentList = await methodChannel.invokeMethod("songs");
+      final results = await methodChannel.invokeMethod<String>('getAudios');
+      if (results != null && results.isNotEmpty) {
+        debugPrint('channel has data: $results');
+      }
     } on PlatformException catch (e) {
-      print("exceptiong $e");
-    }
-    documentList.forEach((song) {
-      print("Document: $song"); // seach in Logcat "Document"
-    });
-  }
-
-  void getAllPhotos() async {
-    // 1
-    // gridHeight = getKeyboardHeight();
-    // 2
-    final results = await methodChannel.invokeMethod<List>('getPhotos', 1000);
-    if (results != null && results.isNotEmpty) {
-      debugPrint('channel has data');
-      setState(() {
-        // images = results.cast<String>();
-        // 3
-        // showGrid = images.isNotEmpty;
-        // 4
-        // focus.unfocus();
-      });
+      debugPrint("error: $e");
     }
   }
 }
