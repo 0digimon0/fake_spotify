@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:ffi';
+import 'dart:io';
 
 import 'package:fake_spotify/data/model/song_item_model.dart';
 import 'package:flutter/material.dart';
@@ -76,6 +77,7 @@ class LibraryPageState extends State<LibraryPage> {
   }
 
   Future<List<SongModel>> getAllAudios() async {
+    if (Platform.isIOS) return List<SongModel>.empty();
     try {
       final results = await methodChannel.invokeMethod<String>('getAudios');
       if (results != null && results.isNotEmpty) {

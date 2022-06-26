@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
-            CollectionView(),
+            CollectionView(collectionName: "For your"),
             SizedBox(
               height: 10,
             ),
@@ -33,7 +33,9 @@ class HomePage extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
-            PopularArtistView(),
+            CollectionView(collectionName: "Choose of sportify"),
+            SizedBox(height: 10),
+            PopularArtistView(subHeaderTitle: 'Popular Artists'),
             SizedBox(
               height: 40,
             ),

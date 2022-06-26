@@ -7,10 +7,21 @@ part 'navigator_state.dart';
 
 class NavigatorBloc extends Bloc<NavigatorEvent, HomeNavigatorState> {
   NavigatorBloc() : super(InitialState()) {
-    debugPrint("NavigatorBloc on event");
-    on<GoHomeEvent>((event, emit) => emit(NavigateToHome()));
-    on<GoLibraryEvent>((event, emit) => emit(NavigateToLibrary()));
-    on<GoSearchEvent>((event, emit) => emit(NavigateToSearch()));
+    debugPrint("NavigatorBloc - on event");
+    on<GoHomeEvent>((event, emit) {
+      debugPrint("NavigatorBloc - on event - GoHomeEvent");
+      emit(NavigateToHome());
+    });
+    on<GoLibraryEvent>((event, emit) {
+      debugPrint("NavigatorBloc - on event - GoLibraryEvent");
+      emit(NavigateToLibrary());
+    });
+    on<GoSearchEvent>((event, emit) {
+      debugPrint("NavigatorBloc - on event - GoPremiumEvent");
+      emit(NavigateToSearch());
+    });
+    // on<GoLibraryEvent>((event, emit) => emit(NavigateToLibrary()));
+    // on<GoSearchEvent>((event, emit) => emit(NavigateToSearch()));
     on<GoPremiumEvent>((event, emit) => emit(NavigateToPremium()));
     on<GoQueryingEvent>((event, emit) => emit(NavigateToQuerying()));
     on<GoPlaylistEvent>((event, emit) => emit(NavigateToPlaylist()));

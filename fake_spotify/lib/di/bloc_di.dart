@@ -9,7 +9,7 @@ class BlocDI {
 
   static Future<void> init(GetIt injector) async {
     injector.registerSingleton<AppBloc>(AppBloc());
-    injector.registerSingleton(NavigatorBloc());
+    injector.registerSingleton<NavigatorBloc>(NavigatorBloc());
     injector.registerFactory(() => AudioBloc());
   }
 }

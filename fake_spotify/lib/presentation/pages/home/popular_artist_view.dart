@@ -3,6 +3,10 @@ import 'package:fake_spotify/presentation/widget/subheader_view.dart';
 import 'package:flutter/material.dart';
 
 class PopularArtistView extends StatelessWidget {
+  String subHeaderTitle = "Popular Artists";
+
+  PopularArtistView({required this.subHeaderTitle});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -11,7 +15,7 @@ class PopularArtistView extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SubHeader(type: Header.HEADER_TYPE_TEXT, header: "Popular Artists"),
+          SubHeader(type: Header.HEADER_TYPE_TEXT, header: subHeaderTitle),
           SizedBox(
             height: 10,
           ),

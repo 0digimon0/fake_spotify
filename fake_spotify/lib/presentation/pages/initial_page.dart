@@ -4,14 +4,16 @@ import 'package:fake_spotify/presentation/widget/loader_control.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 
 class InitialPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    SchedulerBinding.instance!.addPostFrameCallback((_) {
+    SchedulerBinding.instance.addPostFrameCallback((_) {
       Loader.appLoader.showTabbar();
-      Navigator.of(context).pushReplacementNamed(RouteConstant.home);
+      GetIt.I.get<NavigatorBloc>().add(GoHomeEvent());
     });
+
     return BlocListener<NavigatorBloc, HomeNavigatorState>(
       listener: (context, state) {
         if (state is NavigateToHome) {
@@ -28,11 +30,7 @@ class InitialPage extends StatelessWidget {
           // Navigator.of(context).pushNamed(RouteConstant.playlist);
         }
       },
-      child: Container(
-        child: Center(
-          child: Text("Initial Content"),
-        ),
-      ),
+      child: Container(),
     );
   }
 }

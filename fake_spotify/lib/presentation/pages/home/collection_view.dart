@@ -4,6 +4,9 @@ import 'package:fake_spotify/presentation/widget/subheader_view.dart';
 import 'package:flutter/material.dart';
 
 class CollectionView extends StatelessWidget {
+  String collectionName = 'Collection';
+  CollectionView({required this.collectionName});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -12,7 +15,7 @@ class CollectionView extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SubHeader(type: Header.HEADER_TYPE_TEXT, header: "Collection"),
+          SubHeader(type: Header.HEADER_TYPE_TEXT, header: collectionName),
           SizedBox(
             height: 10,
           ),

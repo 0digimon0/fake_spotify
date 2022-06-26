@@ -2,6 +2,7 @@ import 'package:fake_spotify/constant/dimen_constants.dart';
 import 'package:fake_spotify/di/app_injector.dart';
 import 'package:fake_spotify/presentation/blocs/home/navigator_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
 import 'bottom_bar_item.dart';
 
@@ -25,18 +26,19 @@ class NavigationAppBarState extends State<NavigationAppBar> {
       });
     }
 
+    // NavigatorBloc bloc = GetIt.I.get<NavigatorBloc>();
     switch (i) {
       case 1:
-        AppInjector.injector<NavigatorBloc>().add(GoHomeEvent());
+        GetIt.I.get<NavigatorBloc>().add(GoHomeEvent());
         break;
       case 2:
-        AppInjector.injector<NavigatorBloc>().add(GoSearchEvent());
+        GetIt.I.get<NavigatorBloc>().add(GoSearchEvent());
         break;
       case 3:
-        AppInjector.injector<NavigatorBloc>().add(GoLibraryEvent());
+        GetIt.I.get<NavigatorBloc>().add(GoLibraryEvent());
         break;
       case 4:
-        AppInjector.injector<NavigatorBloc>().add(GoPremiumEvent());
+        GetIt.I.get<NavigatorBloc>().add(GoPremiumEvent());
         break;
       default:
     }
