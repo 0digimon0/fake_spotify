@@ -3,9 +3,10 @@ Project clone UI of Spotify application
 
 # Screenshots
 <p float="left">
-  <img src="fake_spotify/screenshot/1.png" width="200px"</img>           
-  <img src="fake_spotify/screenshot/2.png" width="200px"</img>            
-  <img src="fake_spotify/screenshot/3.png" width="200px"</img>         
+  <img src="fake_spotify/screenshot/1.png" width="200px"</img>             
+  <img src="fake_spotify/screenshot/2.png" width="200px"</img>             
+  <img src="fake_spotify/screenshot/3.png" width="200px"</img>            
+  <img src="fake_spotify/screenshot/4.png" width="200px"</img>         
 </p>
 
 # Technologies use
