@@ -4,6 +4,7 @@ import io.flutter.plugin.common.MethodChannel
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.net.Network
 import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.activity.result.contract.ActivityResultContracts
@@ -15,16 +16,21 @@ import android.content.Context
 import com.google.gson.*;
 import java.util.*;
 
+
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.android.FlutterFragmentActivity
+import io.flutter.plugin.common.EventChannel
 
 class MainActivity: FlutterFragmentActivity() {
 //    private var methodResult: MethodChannel.Result? = null
     private var queryLimit: Int = 0
     lateinit var results: MethodChannel.Result
+    private val networkEventChannel = "platform_channel_events/connectivity"
 
    override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
        super.configureFlutterEngine(flutterEngine)
+       EventChannel(flutterEngine.dartExecutor.binaryMessenger, networkEventChannel)
+            .setStreamHandler(NetworkStreamHandler(this))
        val messenger = flutterEngine.dartExecutor.binaryMessenger
        MethodChannel(messenger, "com.spotify.channel")
                .setMethodCallHandler { call, result ->

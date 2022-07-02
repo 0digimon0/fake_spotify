@@ -9,7 +9,7 @@ import 'package:get_it/get_it.dart';
 class InitialPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    SchedulerBinding.instance.addPostFrameCallback((_) {
+    SchedulerBinding.instance!.addPostFrameCallback((_) {
       Loader.appLoader.showTabbar();
       GetIt.I.get<NavigatorBloc>().add(GoHomeEvent());
     });

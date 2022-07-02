@@ -1,16 +1,21 @@
 import 'package:fake_spotify/config/app_config.dart';
+import 'package:fake_spotify/data/model/connectivity.dart';
 import 'package:fake_spotify/di/app_injector.dart';
 import 'package:fake_spotify/presentation/blocs/app/app_bloc.dart';
 import 'package:fake_spotify/presentation/blocs/app/audio_bloc.dart';
 import 'package:fake_spotify/presentation/blocs/home/navigator_bloc.dart';
 import 'package:fake_spotify/presentation/blocs/home/navigator_cubit.dart';
+import 'package:fake_spotify/presentation/pages/library/connection.dart';
 import 'package:fake_spotify/presentation/widget/overlay_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:get_it/get_it.dart';
 
 import 'config/app_route.dart';
 import 'constant/route_constants.dart';
+import 'helper/utils.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,8 +24,16 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+  final _eventChannel =
+      const EventChannel('platform_channel_events/connectivity');
+
   @override
   Widget build(BuildContext context) {
+    final networkStream = _eventChannel
+        .receiveBroadcastStream()
+        .distinct()
+        .map((dynamic event) => Utils.intToConnection(event as int));
+
     return MultiBlocProvider(
       providers: [
         BlocProvider<AppBloc>(
@@ -49,6 +62,25 @@ class MyApp extends StatelessWidget {
                 primarySwatch: Colors.blue,
               ),
             ),
+
+            StreamBuilder<Connection>(
+                initialData: Connection.unknown,
+                stream: networkStream,
+                builder: (context, snapshot) {
+                  final connection = snapshot.data ?? Connection.unknown;
+                  GetIt.I.get<Connectivity>().connectionState = connection;
+
+                  return Visibility(
+                      visible: (connection == Connection.unknown ||
+                          connection == Connection.disconnected),
+                      child: Positioned(
+                        child: Container(color: Colors.red),
+                        top: 20,
+                        left: 0,
+                        right: 0,
+                      ));
+                }),
+
             Positioned(
               child: OverlayView(key: GlobalKey(debugLabel: "overlay")),
               bottom: 0,
