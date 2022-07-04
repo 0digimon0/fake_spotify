@@ -1,4 +1,5 @@
 package com.example.fake_spotify
+
 class AudioModel {
     var aPath: String? = null
     var aName: String? = null

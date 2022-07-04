@@ -37,7 +37,7 @@ class MainActivity: FlutterFragmentActivity() {
                results = result
                    when (call.method) {
                        "getAudios" -> {
-                           Log.d("TAG", "method channel getAudios")
+//                           Log.d("TAG", "method channel getAudios")
                            if(hasStoragePermission()) {
                                getAllAudioFromDevice(MainActivity@this, result)
                                 Log.d("TAG", "already has permission")

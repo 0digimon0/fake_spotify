@@ -1,4 +1,5 @@
 import 'package:fake_spotify/config/app_config.dart';
+import 'package:fake_spotify/constant/dimen_constants.dart';
 import 'package:fake_spotify/data/model/connectivity.dart';
 import 'package:fake_spotify/di/app_injector.dart';
 import 'package:fake_spotify/presentation/blocs/app/app_bloc.dart';
@@ -69,13 +70,15 @@ class MyApp extends StatelessWidget {
                 builder: (context, snapshot) {
                   final connection = snapshot.data ?? Connection.unknown;
                   GetIt.I.get<Connectivity>().connectionState = connection;
-
+                  debugPrint('event stream channel changed ${connection.name}');
                   return Visibility(
                       visible: (connection == Connection.unknown ||
                           connection == Connection.disconnected),
                       child: Positioned(
-                        child: Container(color: Colors.red),
-                        top: 20,
+                        child: Container(
+                          color: Colors.red, height: 30,
+                        child: Text('No network connection, please check again', style: TextStyle(color: Colors.white, fontSize: 14),),alignment: Alignment.center,),
+                        bottom: Dimens.bottomBarHeight,
                         left: 0,
                         right: 0,
                       ));
